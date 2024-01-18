@@ -13,9 +13,17 @@ router.get('/:id', (req, res) => {
 })
 
 //post a  new book
-router.post('/', (req, res) => {
-    res.json({ message: 'post a new book' })
+router.post('/', async (req, res) => {
+    const { id, title, author, price } = req.body
+    try {
+        const book = await Book.create({ id, title, author, price })
+        res.status(200).json(book)
+    }
+    catch (error) {
+        res.status(400).json({ error: error.message })
+    }
 })
+
 
 //delete a  book
 router.delete('/:id', (req, res) => {

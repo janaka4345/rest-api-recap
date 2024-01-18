@@ -1,5 +1,5 @@
 const express = require('express')
-
+const Book = require('../models/bookModel')
 const router = express.Router()//instance of router
 
 //get all books
